@@ -37,6 +37,7 @@
   "rpc.kusama.shiden": "Shiden",
   "rpc.kusama.statemine": "Statemine",
   "rpc.kusama.subgame": "SubGame Gamma",
+  "rpc.kusama.trustbase": "TrustBase",
   "rpc.kylin-node.co.uk": "Kylin Network",
   "rpc.manta": "Manta Testnet",
   "rpc.origintrail": "OriginTrail Parachain Testnet",
