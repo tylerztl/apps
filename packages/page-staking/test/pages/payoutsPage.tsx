@@ -70,7 +70,9 @@ export class PayoutsPage {
           <MemoryRouter>
             <ThemeProvider theme={lightTheme}>
               <ApiContext.Provider value={mockApi}>
-                <Payouts ownValidators={ownValidators}/>
+                <Payouts
+                  hasOwnStashes
+                  ownValidators={ownValidators} />
               </ApiContext.Provider>
             </ThemeProvider>
           </MemoryRouter>
@@ -100,12 +102,12 @@ export class PayoutsPage {
     expect(await screen.findByText(expected)).toBeTruthy();
   }
 
-  async expectMyValidators (expected: {isDisabled: boolean, isSelected: boolean}): Promise<void> {
-    await this.expectToggleOption('My validators', expected);
+  async expectOwnValidators (expected: {isDisabled: boolean, isSelected: boolean}): Promise<void> {
+    await this.expectToggleOption('Own validators', expected);
   }
 
-  async expectMyStashes (expected: {isDisabled: boolean, isSelected: boolean}): Promise<void> {
-    await this.expectToggleOption('My stashes', expected);
+  async expectOwnStashes (expected: {isDisabled: boolean, isSelected: boolean}): Promise<void> {
+    await this.expectToggleOption('Own stashes', expected);
   }
 
   async expectToggleOption (toggleText: string, expected: {isDisabled: boolean, isSelected: boolean}): Promise<void> {

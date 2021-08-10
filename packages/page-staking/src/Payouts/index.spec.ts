@@ -32,31 +32,31 @@ describe('Payouts', () => {
   });
 
   describe('empty view', () => {
-    it('renders `My validators/stashes` toggle', async () => {
+    it('renders `Own validators/stashes` toggle', async () => {
       payoutsPage.renderPage([]);
 
-      await payoutsPage.expectText('My validators');
-      await payoutsPage.expectText('My stashes');
+      await payoutsPage.expectText('Own validators');
+      await payoutsPage.expectText('Own stashes');
     });
 
-    it('when no own validators, then `My validators` is disabled and not selected', async () => {
+    it('when no own validators, then `Own validators` is disabled and not selected', async () => {
       payoutsPage.renderPage([]);
 
-      await payoutsPage.expectMyValidators({ isDisabled: true, isSelected: false });
+      await payoutsPage.expectOwnValidators({ isDisabled: true, isSelected: false });
     });
 
     it('when some own validators, then `My validators` is enabled and selected', async () => {
       payoutsPage.renderPage([someOwnedValidator]);
 
-      await payoutsPage.expectMyValidators({ isDisabled: false, isSelected: true });
+      await payoutsPage.expectOwnValidators({ isDisabled: false, isSelected: true });
     });
 
     it('when some own validators, but after accounts load and rerender, then `My validators` is selected',
       async () => {
         payoutsPage.renderPage([]);
-        await payoutsPage.expectMyValidators({ isDisabled: true, isSelected: false });
+        await payoutsPage.expectOwnValidators({ isDisabled: true, isSelected: false });
         payoutsPage.renderPage([someOwnedValidator]);
-        await payoutsPage.expectMyValidators({ isDisabled: false, isSelected: true });
+        await payoutsPage.expectOwnValidators({ isDisabled: false, isSelected: true });
       });
 
     it('when loading validators, then `My validators` and `My stashes` are not rendered', () => {
@@ -70,8 +70,8 @@ describe('Payouts', () => {
       mockHooks.ownEraRewards.isLoadingRewards = true;
 
       payoutsPage.renderPage([]);
-      await payoutsPage.expectMyValidators({ isDisabled: true, isSelected: false });
-      await payoutsPage.expectMyStashes({ isDisabled: true, isSelected: true });
+      await payoutsPage.expectOwnValidators({ isDisabled: true, isSelected: false });
+      await payoutsPage.expectOwnStashes({ isDisabled: true, isSelected: true });
     });
   });
 });

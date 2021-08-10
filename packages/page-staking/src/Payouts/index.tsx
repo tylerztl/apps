@@ -25,6 +25,7 @@ import Validator from './Validator';
 interface Props {
   className?: string;
   isInElection?: boolean;
+  hasOwnStashes?: boolean;
   ownValidators?: StakerState[];
 }
 
@@ -162,7 +163,7 @@ function getOptions (api: ApiPromise, eraLength: BN | undefined, historyDepth: B
   return eraSelection;
 }
 
-function Payouts ({ className = '', isInElection, ownValidators }: Props): React.ReactElement<Props> {
+function Payouts ({ className = '', hasOwnStashes, isInElection, ownValidators }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
   const { api } = useApi();
   const isLoadingValidators = useMemo(() => ownValidators === undefined, [ownValidators]);
@@ -230,67 +231,69 @@ function Payouts ({ className = '', isInElection, ownValidators }: Props): React
     </tr>
   ), [valAvail]);
 
-  return (
-    <div className={className}>
-      <Button.Group>
-        <ToggleGroup
-          onChange={setEraSelectionIndex}
-          options={eraSelection}
-          value={eraSelectionIndex}
-        />
-        {!isLoadingValidators && <ToggleGroup
-          onChange={setMyStashesIndex}
-          options={valOptions}
-          value={myStashesIndex}
-        />}
-        <PayButton
-          isAll
-          isDisabled={isInElection}
-          payout={validators}
-        />
-      </Button.Group>
-      <ElectionBanner isInElection={isInElection} />
-      {!isLoadingRewards && !stashes?.length && (
-        <article className='warning centered'>
-          <p>{t('Payouts of rewards for a validator can be initiated by any account. This means that as soon as a validator or nominator requests a payout for an era, all the nominators for that validator will be rewarded. Each user does not need to claim individually and the suggestion is that validators should claim rewards for everybody as soon as an era ends.')}</p>
-          <p>{t('If you have not claimed rewards straight after the end of the era, the validator is in the active set and you are seeing no rewards, this would mean that the reward payout transaction was made by another account on your behalf. Always check your favorite explorer to see any historic payouts made to your accounts.')}</p>
-        </article>
-      )}
-      <Table
-        empty={!isLoadingRewards && stashes && (
-          myStashesIndex
-            ? t<string>('No pending payouts for your stashes')
-            : t<string>('No pending payouts for your validators')
-        )}
-        emptySpinner={t<string>('Retrieving info for the selected eras, this will take some time')}
-        footer={footerStash}
-        header={headerStashes}
-        isFixed
-      >
-        {!isLoadingRewards && stashes?.map((payout): React.ReactNode => (
-          <Stash
-            key={payout.stashId}
-            payout={payout}
+  return !hasOwnStashes
+    ? null
+    : (
+      <div className={className}>
+        <Button.Group>
+          <ToggleGroup
+            onChange={setEraSelectionIndex}
+            options={eraSelection}
+            value={eraSelectionIndex}
           />
-        ))}
-      </Table>
-      {(myStashesIndex === 1) && !isLoadingRewards && validators && (validators.length !== 0) && (
+          {!isLoadingValidators && <ToggleGroup
+            onChange={setMyStashesIndex}
+            options={valOptions}
+            value={myStashesIndex}
+          />}
+          <PayButton
+            isAll
+            isDisabled={isInElection}
+            payout={validators}
+          />
+        </Button.Group>
+        <ElectionBanner isInElection={isInElection} />
+        {!isLoadingRewards && !stashes?.length && (
+          <article className='warning centered'>
+            <p>{t('Payouts of rewards for a validator can be initiated by any account. This means that as soon as a validator or nominator requests a payout for an era, all the nominators for that validator will be rewarded. Each user does not need to claim individually and the suggestion is that validators should claim rewards for everybody as soon as an era ends.')}</p>
+            <p>{t('If you have not claimed rewards straight after the end of the era, the validator is in the active set and you are seeing no rewards, this would mean that the reward payout transaction was made by another account on your behalf. Always check your favorite explorer to see any historic payouts made to your accounts.')}</p>
+          </article>
+        )}
         <Table
-          footer={footerVal}
-          header={headerValidatorsRef.current}
+          empty={!isLoadingRewards && stashes && (
+            myStashesIndex
+              ? t<string>('No pending payouts for your stashes')
+              : t<string>('No pending payouts for your validators')
+          )}
+          emptySpinner={t<string>('Retrieving info for the selected eras, this will take some time')}
+          footer={footerStash}
+          header={headerStashes}
           isFixed
         >
-          {!isLoadingRewards && validators.filter(({ available }) => !available.isZero()).map((payout): React.ReactNode => (
-            <Validator
-              isDisabled={isInElection}
-              key={payout.validatorId}
+          {!isLoadingRewards && stashes?.map((payout): React.ReactNode => (
+            <Stash
+              key={payout.stashId}
               payout={payout}
             />
           ))}
         </Table>
-      )}
-    </div>
-  );
+        {(myStashesIndex === 1) && !isLoadingRewards && validators && (validators.length !== 0) && (
+          <Table
+            footer={footerVal}
+            header={headerValidatorsRef.current}
+            isFixed
+          >
+            {!isLoadingRewards && validators.filter(({ available }) => !available.isZero()).map((payout): React.ReactNode => (
+              <Validator
+                isDisabled={isInElection}
+                key={payout.validatorId}
+                payout={payout}
+              />
+            ))}
+          </Table>
+        )}
+      </div>
+    );
 }
 
 export default React.memo(styled(Payouts)`
