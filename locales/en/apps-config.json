@@ -2,6 +2,7 @@
   "lightclient.experimental": "light client (experimental)",
   "lng.detect": "Default browser language (auto-detect)",
   "rpc.KlugDossier": "Klug Dossier",
+  "rpc.calamari.systems": "Calamari",
   "rpc.dev.custom": "Custom environment",
   "rpc.dev.custom.entry": "Custom {{WS_URL}}",
   "rpc.dev.custom.own": "Custom",
