@@ -409,7 +409,7 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
             : isDevelopment
               ? (
                 <Badge
-                  className='devBadge warning'
+                  className='warning'
                   color='orange'
                   hover={t<string>('This is a development account derived from the known development seed. Do not use for any funds on a non-development network.')}
                   icon='wrench'
@@ -719,10 +719,6 @@ export default React.memo(styled(Account)`
     min-height: 1.5rem;
   }
 
-  .devBadge {
-    opacity: 0.65;
-  }
-
   && td.button {
     padding-bottom: 0.5rem;
   }
@@ -739,6 +735,7 @@ export default React.memo(styled(Account)`
       margin-top: auto;
       margin-bottom: auto;
       transform: translate(-50%, 0);
+      opacity: 0.65;
     }
   }
 
