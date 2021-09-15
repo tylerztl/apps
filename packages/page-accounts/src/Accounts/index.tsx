@@ -285,6 +285,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
         </Button.Group>
       </SummaryBox>
       <Table
+        className='accounts-table'
         empty={!isLoading && sortedAccounts && t<string>("You don't have any accounts. Some features are currently hidden and will only become available once you have accounts.")}
         header={header.current}
       >
@@ -319,5 +320,11 @@ export default React.memo(styled(Overview)`
     display: flex;
     flex-direction: row;
     align-items: center;
+  }
+
+  .ui--Table.accounts-table {
+    table {
+      overflow: visible !important;
+    }
   }
 `);
