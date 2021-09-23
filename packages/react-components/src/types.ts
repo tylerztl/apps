@@ -82,6 +82,8 @@ export interface ThemeProps {
 
 export type FlagColor = 'blue' | 'green' | 'grey' | 'orange' | 'pink' | 'red' | 'yellow' | 'theme';
 
+export type BadgeColor = 'blue' | 'gray' | 'green' | 'highlight' | 'normal' | 'orange' | 'purple' | 'red' | 'transparent' | 'white';
+
 export type AccountIdIsh = AccountId | AccountIndex | Address | string | Uint8Array | null;
 
 export type DisplayedJudgement = 'Erroneous' | 'Low quality' | 'Known good' | 'Reasonable';
