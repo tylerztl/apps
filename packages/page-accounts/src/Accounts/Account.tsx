@@ -400,7 +400,6 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
     return null;
   }
 
-  console.log(proxy?.[0].length && api.api.tx.utility)
   return (
     <>
       <tr className={`${className}${isExpanded ? ' noBorder' : ''} ${isEven ? 'isEven' : 'isOdd'}`}>
