@@ -411,8 +411,8 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
           />
         </td>
         <td className='together'>
-          <div>
-            <div>
+          <div className='badges'>
+            <div className='info'>
               {meta.genesisHash
                 ? <Badge color='transparent' />
                 : isDevelopment
@@ -480,10 +480,11 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
                 />
               )}
             </div>
-            <div>
+            <div className='action'>
               {multiInfos && multiInfos.length !== 0 && (
                 <Badge
                   className='important'
+                  color='purple'
                   hover={t<string>('Multisig approvals pending')}
                   hoverAction={t<string>('View pending approvals')}
                   icon='file-signature'
@@ -494,6 +495,7 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
               {delegation?.accountDelegated && (
                 <Badge
                   className='information'
+                  color='purple'
                   hover={t<string>('This account has a governance delegation')}
                   hoverAction={t<string>('Manage delegation')}
                   icon='calendar-check'
@@ -757,24 +759,21 @@ export default React.memo(styled(Account)`
     }
   }
 
-  .together {
-    padding: 0 0.5rem;
-    & > div {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+  .together > .badges {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-      & > div + div {
-        margin-top: 0.5rem;
+    & > .info + .action {
+      margin-top: 0.5rem;
 
-        &:empty {
-          margin-top: 0;
-        }
-      }
-
-      & > div:empty + div {
+      &:empty {
         margin-top: 0;
       }
+    }
+
+    & > .info:empty + .action {
+      margin-top: 0;
     }
   }
 `);
