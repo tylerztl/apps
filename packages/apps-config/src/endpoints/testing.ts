@@ -19,7 +19,7 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
     // alphabetical based on chain name, e.g. Amber, Arcadia, Beresheet, ...
     {
       info: 'UChain',
-      text: t('rpc.test.uchain', 'UChain Staging Testnet', { ns: 'apps-config' }),
+      text: t('rpc.test.uchain', 'UChain Staging', { ns: 'apps-config' }),
       providers: {
         'RadioCaca Dev': 'ws://172.16.67.166:9945'
       }
