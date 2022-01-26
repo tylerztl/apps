@@ -13,6 +13,7 @@ const emptyColor = '#99999';
 
 // based on chain name
 // alphabetical
+const chainUChain = '#BDCC38';
 const chainSherpax = '#6bbee8';
 const chainAcala = '#645AFF';
 const chainAleph = '#00CCAB';
@@ -203,6 +204,8 @@ export { emptyColor };
 // Alphabetical overrides based on the actual matched chain name
 // NOTE: This is as retrieved via the system.chain RPC
 export const chainColors: Record<string, string> = Object.entries({
+  UChain: chainUChain,
+  'UChain Testnet': chainUChain,
   Acala: chainAcala,
   'Acala Dev': chainAcala,
   'acala mandala pc1': chainRoccoMandala,
