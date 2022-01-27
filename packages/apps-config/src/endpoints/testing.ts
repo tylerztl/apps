@@ -18,10 +18,10 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
   return expandEndpoints(t, [
     // alphabetical based on chain name, e.g. Amber, Arcadia, Beresheet, ...
     {
-      info: 'UChain',
-      text: t('rpc.test.uchain', 'UChain Staging', { ns: 'apps-config' }),
+      info: 'uchain',
+      text: t('rpc.test.uchain', 'UChain', { ns: 'apps-config' }),
       providers: {
-        'RadioCaca Dev': 'ws://172.16.67.166:9945'
+        'RadioCaca Dev': 'ws://52.206.88.57:9945'
       }
     },
     {

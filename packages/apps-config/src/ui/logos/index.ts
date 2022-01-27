@@ -174,7 +174,7 @@ import emptyLogo from './empty.svg';
 // Alphabetical overrides based on the actual matched chain name
 // NOTE: This is as retrieved via system.chain RPC
 export const chainLogos = Object.entries({
-  'UChain Staging': chainUChain,
+  UChain: chainUChain,
   'Aleph Zero': chainAleph,
   'Aleph Zero Testnet': chainAleph,
   Altair: chainAltair,
@@ -337,7 +337,7 @@ export const chainLogos = Object.entries({
 // Alphabetical overrides based on the actual software node type
 // NOTE: This is as retrieved via system.name RPC
 export const nodeLogos = Object.entries({
-  'UChain Staging': chainUChain,
+  'UChain Node': chainUChain,
   'Acala Node': chainAcala,
   'Apron Node': nodeApron,
   'Apron Parachain Collator': nodeApron,
@@ -518,7 +518,6 @@ export const specLogos = Object.entries({
 // https://github.com/polkadot-js/common/blob/master/packages/networks/src/index.ts)
 export const namedLogos: Record<string, unknown> = {
   uchain: chainUChain,
-  'UChain Staging': chainUChain,
   acala: chainAcala,
   aleph: chainAleph,
   alexander: nodePolkadot,

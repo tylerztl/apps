@@ -205,7 +205,6 @@ export { emptyColor };
 // NOTE: This is as retrieved via the system.chain RPC
 export const chainColors: Record<string, string> = Object.entries({
   UChain: chainUChain,
-  'UChain Staging': chainUChain,
   Acala: chainAcala,
   'Acala Dev': chainAcala,
   'acala mandala pc1': chainRoccoMandala,
