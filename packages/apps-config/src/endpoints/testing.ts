@@ -21,7 +21,7 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
       info: 'uchain',
       text: t('rpc.test.uchain', 'UChain', { ns: 'apps-config' }),
       providers: {
-        'RadioCaca Dev': 'ws://52.206.88.57:9945'
+        'RadioCaca': 'ws://52.206.88.57:9945'
       }
     },
     {
